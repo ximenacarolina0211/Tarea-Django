@@ -1,0 +1,31 @@
+<h1> Detalle de la Venta {{ venta.numero_factura }}</h1>
+
+<p><strong>Cliente:</strong> {{ venta.cliente.nombre }}</p>
+<p><strong>Fecha:</strong> {{ venta.fecha }}</p>
+<p><strong>Descuento:</strong> {{ venta.descuento }}</p>
+<p><strong>Monto Final:</strong> {{ venta.monto_final }}</p>
+
+<h3>Productos de la venta</h3>
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio (S/.)</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in venta.detalles.all %}
+        <tr>
+            <td>{{ d.producto.nombre }}</td>
+            <td>{{ d.precio_venta }}</td>
+            <td>{{ d.cantidad }}</td>
+            <td>{{ d.subtotal }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<a href="{% url 'ventas:ver_ventas' %}">⬅Volver a Ventas</a>

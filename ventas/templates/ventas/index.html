@@ -1,0 +1,31 @@
+<h1> Listado de Productos</h1>
+
+{% if ventas_producto %}
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio (S/.)</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in ventas_producto %}
+        <tr>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.precio_actual }}</td>
+            <td>{{ p.stock }}</td>
+            <td>{{ p.categoria.nombre }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color: red;"> No hay productos registrados</p>
+{% endif %}
+
+<br>
+<a href="{% url 'ventas:ver_ventas' %}"> Ver Ventas</a> | 
+<a href="{% url 'ventas:ver_clientes' %}"> Ver Clientes</a> | 
+<a href="{% url 'ventas:ver_proveedores' %}"> Ver Proveedores</a>
